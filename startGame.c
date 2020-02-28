@@ -17,19 +17,20 @@ int startGame(){
         printf("Would you like to play with 1 player or 2 players?");
         scanf("%d", &playerCount);
         if (playerCount==1){
-            printf("You are now playing with 1 player!");
+            printf("You are now playing with 1 player!\n");
         }
         else if (playerCount==2){
-            printf("You are now playing with 2 players!");
+            printf("You are now playing with 2 players!\n");
         }
-        while ((playerCount!=1) || (playerCount!=2)){
+        while ((playerCount!=1) && (playerCount!=2)){
             printf("Invalid answer. Would you like to play 1 player or 2 players?");
             scanf("%d", &playerCount);
+        }
     }
     else if (userIn==2){
-        printf("You are not playing.");
+        printf("You are not playing.\n");
     }
-    while ((userIn != 1) || (userIn !=2)){
+    while ((userIn != 1) &&  (userIn !=2)){
         printf("That is an invalid answer. Would you like to play hangman? (Yes=1 and No=2)");
         scanf("%d", &userIn);
     }
