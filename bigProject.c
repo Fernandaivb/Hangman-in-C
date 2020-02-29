@@ -1,22 +1,32 @@
+/****************************************************************************************************************************
+*File: bigProject.c
+*Names: Kearsten Crocker, Blake Webber, Fernanda Villafana Benitez
+*Resources: 
+****************************************************************************************************************************/
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
 #include <stdlib.h>
 
-//int hangState();
+void hangState();
 int startGame();                                                                        
-//int randomWord();
+//char randomWord();
+
 
 int userIn;
 int main(){
     startGame();
     if(userIn==1){                                                                      //this is lets the user choose the phrase to guess
-    char custom[100];
-    printf("What would you like the phrase to be:");    
-    scanf("%s",&custom);
+        char custom[100];
+        printf("What would you like the phrase to be:");    
+        scanf("%s",&custom);
+        hangState(0);
+        game(custom)
     }
-    else if(userIn==2)                                                                  //calls the randomWord function 
-      //  randomWord();
+    else if(userIn==2){                                                                  //calls the randomWord function 
+       // randomWord();
+        hangState();
+    }
 
 return 0;
 }
@@ -41,3 +51,20 @@ int startGame(){
     }    
 return userIn;
 }
+
+//char randomWord(){
+
+   // FILE *in_file = fopen("words","r");
+
+void hangState(int=x){
+
+    char state[]={"  +---+\n  |   | \n      | \n      | \n      | \n      | \n============ \n",""};
+    printf("%s",state[x]);
+}
+
+
+
+
+
+
+
