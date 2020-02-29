@@ -11,7 +11,8 @@
 void hangState();
 int startGame();                                                                        
 //char randomWord();
-
+int playGame();
+int enterLetter();
 
 int userIn;
 int main(){
@@ -26,6 +27,7 @@ int main(){
     else if(userIn==2){                                                                  //calls the randomWord function 
        // randomWord();
         hangState();
+        printf("These are movies from 2019\n");
     }
 
 return 0;
@@ -59,10 +61,18 @@ return userIn;
 void hangState(int=x){
 
     char state[]={"  +---+\n  |   | \n      | \n      | \n      | \n      | \n============ \n",""};
-    printf("%s",state[x]);
+    printf("%s",state);
 }
 
+int playGame(){
 
+
+}
+
+int enterLetter(){
+
+
+}
 
 
 
