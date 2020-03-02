@@ -60,8 +60,7 @@ int startGame(){                                                                
     return 0;
 } 
 int main (){
-    int x;
-    x= startGame();
+    startGame();
     printf("%s", custom); 
 
     //fclose();
