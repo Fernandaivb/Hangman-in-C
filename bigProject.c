@@ -11,8 +11,9 @@
 void hangState();
 int startGame();                                                                        
 //char randomWord();
-int playGame();
-int enterLetter();
+//int playGame();
+//int enterLetter();
+//int gameOver();
 
 int userIn;
 int main(){
@@ -21,13 +22,13 @@ int main(){
         char custom[100];
         printf("What would you like the phrase to be:");    
         scanf("%s",&custom);
-        hangState(0);
-        game(custom)
-    }
-    else if(userIn==2){                                                                  //calls the randomWord function 
-       // randomWord();
         hangState();
-        printf("These are movies from 2019\n");
+        //playgame(custom)
+    }
+    else if(userIn==2){   
+        printf("These are movies from 2019\n");                                 
+        // randomWord();
+        hangState();
     }
 
 return 0;
@@ -53,17 +54,76 @@ int startGame(){
     }    
 return userIn;
 }
+/*
+char randomWord(){
 
-//char randomWord(){
 
-   // FILE *in_file = fopen("words","r");
+}
+*/
+void hangState(){
 
-void hangState(int=x){
+    char state[8][8][20]=
+{{  "  +---+ \n",
+    "  |   | \n",   
+    "      | \n",
+    "      | \n",
+    "      | \n",
+    "      | \n",
+    " ============ \n"},
+{   "  +---+ \n",
+    "  |   | \n",
+    "  o   | \n",
+    "      | \n",
+    "      | \n",
+    "      | \n",
+    " ============ \n"},
+{   "  +---+\n",
+    "  |   | \n",
+    "  o   | \n",
+    "  |   | \n",
+    "      | \n",
+    "      | \n",
+    " ============ \n"},
+{   "  +---+\n",
+    "  |   | \n",
+    "  o   | \n",
+    " /|   | \n",
+    "      | \n",
+    "      | \n",
+    " ============ \n"},
+{   "  +---+\n",
+    "  |   | \n",
+    "  o   | \n",
+    " /|\\  | \n",
+    "      | \n",
+    "      | \n",
+    " ============ \n"},
+{   "  +---+\n",
+    "  |   | \n",
+    "  o   | \n",
+    " /|\\  | \n",
+    " /    | \n",
+    "      | \n",
+    " ============ \n"},
+{   "  +---+\n",
+    "  |   | \n",
+    "  o   | \n",
+    " /|\\  | \n",
+    " / \\  | \n",
+    "      | \n",
+    " ============ \n"}};
 
-    char state[]={"  +---+\n  |   | \n      | \n      | \n      | \n      | \n============ \n",""};
-    printf("%s",state);
+    int y,z;
+    for(y=0;y<7;y++){
+        for(z=0;z<7;z++)
+            printf("%s",state[y][z]);
+    
+        printf("You have %d incorrect guesses left.\n",6-y);
+    }
+   // playGame();
 }
 
+/*
 int playGame(){
 
 
@@ -74,7 +134,9 @@ int enterLetter(){
 
 }
 
+int gameOver(){
 
-
+}
+*/
 
 
