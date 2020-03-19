@@ -31,7 +31,7 @@ int main(){
 	    }
     }
     
-    for (x=0; x<ATTEMPT; x++){
+    for (x=0; x<ATTEMPT; x++){ //removes repeated characters from array
         str[x]=str[x+r];
         if (str[x] == c){
             r++;
