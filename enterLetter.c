@@ -12,7 +12,7 @@ int main(){
 
     char c='*';
     int d; //d = duplicate;
-    int r; // r = remove;
+    int r=0; // r = remove;
 
 
     for (x=0; x<ATTEMPT; x++){      //scans and conversts upper case characters to lower
@@ -31,13 +31,13 @@ int main(){
 	    }
     }
     
-    /*for (x=0; x<ATTEMPT; x++){
+    for (x=0; x<ATTEMPT; x++){
         str[x]=str[x+r];
         if (str[x] == c){
             r++;
             x--;
         }
-    }*/
+    }
     //str[ATTEMPT] = 0;
 
     printf(" %s", str);
