@@ -31,7 +31,7 @@ int main(){
 	    }
     }
     
-    for (x=0; x<ATTEMPT; x++){
+    for (x=0; x<ATTEMPT; x++){	//Ensures repeated letters are not stored in the array
         str[x]=str[x+r];
         if (str[x] == c){
             printf("Don't guess the same letter more than once.\n");
