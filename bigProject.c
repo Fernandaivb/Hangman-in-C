@@ -7,15 +7,12 @@
 #include <string.h>
 #include <time.h>
 #include <stdlib.h>
-#include <ctype.h>
-
-#define ATTEMPT 3
 
 void hangState();
 int startGame();                                                                        
-//char randomWord();
-//int playGame();
-int enterLetter();
+char randomWord();
+int playGame();
+//int enterLetter();
 //int gameOver();
 
 int userIn;
@@ -25,14 +22,13 @@ int main(){
         char custom[100];
         printf("What would you like the phrase to be:");    
         scanf("%s",&custom);
-        enterLetter();
         hangState();
         //playgame(custom)
     }
     else if(userIn==2){   
         printf("These are movies from 2019\n");                                 
-        // randomWord();
-        hangState();
+        //hangState();
+        randomWord();
     }
 
 return 0;
@@ -58,10 +54,28 @@ int startGame(){
     }    
 return userIn;
 }
-/*
-char randomWord(){
+
+char randomWord(){                      //This function is used when there is one player.
+    char movie[]="";
+    char wordList[10][200];
+    int randomPosition, counter=0;
+    FILE * movies;
+    movies = fopen( "words.txt" , "r" );
+    
+    while (fgets(wordList[counter],200, movies )){
+           // printf(" This is a test to print the file... %s\n", wordList[counter]);// This shows that the file is read into the array wordList
+            ++counter;
+    }
+    
+    srand(time(NULL));
+    randomPosition=rand()%10;
+    //printf("from word list %s", wordList[randomPosition]);
+    playGame(wordList[randomPosition]);
+    return 0;
 }
-*/
+
+
+
 void hangState(){
 
     char state[8][8][20]=
@@ -125,46 +139,36 @@ void hangState(){
    // playGame();
 }
 
-int enterLetter(){
-    char str[ATTEMPT];
-    char max[100];
-    int x;
-    char userInput;
 
-    char c='*';
-    int d; //d = duplicate;
-    int r=0; // r = remove;
-
-
-    for (x=0; x<ATTEMPT; x++){      //scans and conversts upper case characters to lower
-        printf(" Guess a character: ");
-        int rc = scanf("%s", max);
-        userInput= tolower(max[0]);
-        str[x] = userInput;
-    }
+int playGame(char show[]){
     
-    for (x=0; x<ATTEMPT; x++){  //detects repeated characters
-        if(!(str[x]==c)){
-            for(d=x+1; str[d];d++){
-                if(str[x] == str[d])
-                    str[d]=c;
+    int length,x,y,solve=0,newlength,compare;
+    char guessLength[6]={"abcde"};
+    length=strlen(show)-1;
+    newlength=strlen(guessLength)-1;
+    printf("new len %d\n",newlength);
+    while(solve!=1){
+        for(y=0;y<length;y++){
+            for(x=0;x<newlength;x++){          //for loops for each character in the answer
+                compare=strcmp(show[y],guessLength[x]);
+                if(compare==0)
+                    printf("%c",show[x]);   
+                
+                
+    
             }
-	    }
-    }
-    
-    for (x=0; x<ATTEMPT; x++){	//Ensures repeated letters are not stored in the array
-        str[x]=str[x+r];
-        if (str[x] == c){
-            printf("Don't guess the same letter more than once.\n");
-            r++;
-            x--;
         }
     }
-    printf(" %s\n", str); //array of characters
 }
 /*
-int playGame(){
+int enterLetter(){
+
+
 }
+
 int gameOver(){
+
 }
 */
+
+
