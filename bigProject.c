@@ -21,7 +21,7 @@ int main(){
     if(userIn==1){                                                                      //this is lets the user choose the phrase to guess
         char custom[100];
         printf("What would you like the phrase to be:");    
-        scanf("%s",&custom);
+        scanf("%s",custom);
         hangState();
         //playgame(custom)
     }
@@ -41,7 +41,7 @@ int startGame(){
     int rc=scanf("%d",&userIn);                                                         //rc checks to see if the input is a integer or character
     while((userIn!=1 &&  userIn!=2) || rc!=1){                                          //keeps the user in the while statement until they enter 1 or 2
         if(rc==0){
-            scanf("%s",&check);                                                         //checks for int/char in the while loop
+            scanf("%s",check);                                                         //checks for int/char in the while loop
             printf("Invalid input\n");
             printf("Would you like to choose the phrase(1) or use a premade(2):");
             rc=scanf("%d", &userIn);
