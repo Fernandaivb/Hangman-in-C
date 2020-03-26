@@ -21,7 +21,7 @@ int main(){
     if(userIn==1){                                                                      //this is lets the user choose the phrase to guess
         char custom[100];
         printf("What would you like the phrase to be:");    
-        scanf("%s",custom);
+        scanf("%s",&custom);
         hangState();
         //playgame(custom)
     }
@@ -41,7 +41,7 @@ int startGame(){
     int rc=scanf("%d",&userIn);                                                         //rc checks to see if the input is a integer or character
     while((userIn!=1 &&  userIn!=2) || rc!=1){                                          //keeps the user in the while statement until they enter 1 or 2
         if(rc==0){
-            scanf("%s",check);                                                         //checks for int/char in the while loop
+            scanf("%s",&check);                                                         //checks for int/char in the while loop
             printf("Invalid input\n");
             printf("Would you like to choose the phrase(1) or use a premade(2):");
             rc=scanf("%d", &userIn);
@@ -56,7 +56,6 @@ return userIn;
 }
 
 char randomWord(){                      //This function is used when there is one player.
-    char movie[]="";
     char wordList[10][200];
     int randomPosition, counter=0;
     FILE * movies;
@@ -76,7 +75,7 @@ char randomWord(){                      //This function is used when there is on
 
 
 
-void hangState(){
+void hangState(int incor){
 
     char state[8][8][20]=
 {{  "  +---+ \n",
@@ -130,13 +129,10 @@ void hangState(){
     " ============ \n"}};
 
     int y,z;
-    for(y=0;y<7;y++){
-        for(z=0;z<7;z++)
-            printf("%s",state[y][z]);
+    for(y=0;y<8;y++)
+        printf("%s",state[incor][y]);        
+    printf("You have %d incorrect guesses left.\n",6-incor);
     
-        printf("You have %d incorrect guesses left.\n",6-y);
-    }
-   // playGame();
 }
 
 
@@ -147,7 +143,8 @@ int playGame(char show[]){
     length=strlen(show)-1;
     newlength=strlen(guessLength)-1;
     printf("new len %d\n",newlength);
-    while(solve!=1){
+    hangState(1);
+   /* while(solve!=1){
         for(y=0;y<length;y++){
             for(x=0;x<newlength;x++){          //for loops for each character in the answer
                 compare=strcmp(show[y],guessLength[x]);
@@ -158,8 +155,9 @@ int playGame(char show[]){
     
             }
         }
-    }
+    }*/
 }
+
 /*
 int enterLetter(){
 
