@@ -12,7 +12,7 @@ void hangState();
 int startGame();                                                                        
 char randomWord();
 int playGame();
-//int enterLetter();
+char* enterLetter();
 //int gameOver();
 
 int userIn;
@@ -21,13 +21,13 @@ int main(){
     if(userIn==1){                                                                      //this is lets the user choose the phrase to guess
         char custom[100];
         printf("What would you like the phrase to be:");    
-        scanf("%s",&custom);
-        hangState();
-        //playgame(custom)
+        scanf("%s",custom);
+        //hangState();
+        playGame(custom);
     }
     else if(userIn==2){   
         printf("These are movies from 2019\n");                                 
-        //hangState();
+        hangState();
         randomWord();
     }
 
@@ -41,7 +41,7 @@ int startGame(){
     int rc=scanf("%d",&userIn);                                                         //rc checks to see if the input is a integer or character
     while((userIn!=1 &&  userIn!=2) || rc!=1){                                          //keeps the user in the while statement until they enter 1 or 2
         if(rc==0){
-            scanf("%s",&check);                                                         //checks for int/char in the while loop
+            scanf("%s",check);                                                         //checks for int/char in the while loop
             printf("Invalid input\n");
             printf("Would you like to choose the phrase(1) or use a premade(2):");
             rc=scanf("%d", &userIn);
@@ -59,7 +59,7 @@ char randomWord(){                      //This function is used when there is on
     char wordList[10][200];
     int randomPosition, counter=0;
     FILE * movies;
-    movies = fopen( "words.txt" , "r" );
+    movies = fopen( "words.txt" , "r" );    //Make sure you have words.txt in same file location
     
     while (fgets(wordList[counter],200, movies )){
            // printf(" This is a test to print the file... %s\n", wordList[counter]);// This shows that the file is read into the array wordList
@@ -72,7 +72,6 @@ char randomWord(){                      //This function is used when there is on
     playGame(wordList[randomPosition]);
     return 0;
 }
-
 
 
 void hangState(int incor){
@@ -128,7 +127,7 @@ void hangState(int incor){
     "      | \n",
     " ============ \n"}};
 
-    int y,z;
+    int y;
     for(y=0;y<8;y++)
         printf("%s",state[incor][y]);        
     printf("You have %d incorrect guesses left.\n",6-incor);
@@ -139,31 +138,83 @@ void hangState(int incor){
 int playGame(char show[]){
     
     int length,x,y,solve=0,newlength,compare;
-    char guessLength[6]={"abcde"};
+    char guesses[]={"abcd"};
     length=strlen(show)-1;
-    newlength=strlen(guessLength)-1;
-    printf("new len %d\n",newlength);
-    hangState(1);
-   /* while(solve!=1){
+    newlength=strlen(guesses);
+    //printf("len %d\n",length);
+    //printf("new len %d\n",newlength);
+    printf("%s\n",show);
+    //enterLetter(guesses,newlength);
+    while(solve!=1){
         for(y=0;y<length;y++){
             for(x=0;x<newlength;x++){          //for loops for each character in the answer
-                compare=strcmp(show[y],guessLength[x]);
-                if(compare==0)
-                    printf("%c",show[x]);   
-                
-                
-    
+
+                if(show[y]==32){
+                    printf("%c ",show[y]);
+                    break;
+                }
+                else if(show[y]==guesses[x]){
+                    printf("%c ",show[y]);
+                    break;
+                }
+                else if(x<newlength-1)
+                    continue;
+                else
+                    printf("_ ");
+                  
             }
         }
-    }*/
+    //enterLetter(guesses);
+    printf("\n");
+    break;      //Remove this when testing is done
+    }
+return 0;
 }
 
 /*
-int enterLetter(){
+char* enterLetter(char *guess,int len){
+    int x,reuse,guessLength;
+    char input;
+    printf("hi");
+    guessLength=strlen(guess);
+    printf("hi");
+    printf("Guessed Letters: ");
+    for(x=0;x<guessLength;x++)
+        printf("%c ",guess[x]);
+    printf("Enter a lower case letter: ");
+    scanf("%c",input);
 
+    for(x=0;x<guessLength;x++){
+        if(input==guess[x])
+            reuse=1;
+        else if(x<guessLength)
+            continue;
+        else
+            reuse=0;
+    }
+
+    while((input<97 && input>122) || reuse==1){
+        printf("Invalid Input. Try again.Enter a lower case letter: ");
+        scanf("%c",input);
+
+        for(x=0;x<guessLength;x++){
+            if(input==guess[x])
+                reuse=1;
+            else if(x<guessLength)
+                continue;
+            else
+                reuse=0;
+        }
+    
+    }
+
+char* ret = input;
+return ret;
 
 }
 
+*/
+/*
 int gameOver(){
 
 }
