@@ -135,11 +135,11 @@ void hangState(int incor) {
 }
 
 
-int playGame(char show[]) {
+int playGame(char show[], char input[]) {
 
     int length, x, y, solve = 0, newlength, compare;
-    char guesses[] = { "\n" };
-    //char guesses[] += input;
+    char guesses[] = { "abe\n" };
+    //strcat(guesses,input);
     length = strlen(show) - 1;
     newlength = strlen(guesses);
     //printf("len %d\n",length);
