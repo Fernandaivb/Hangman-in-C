@@ -137,7 +137,7 @@ void hangState(int incor){
 
 int playGame(char show[]){
     
-    int length,x,y,solve=0,newlength,compare,count=0,wrong=0;
+    int length,x,y,solve=0,newlength,count=0,wrong=0;
     char guesses[26]={""};
     length=strlen(show)-1;
     printf("%s\n",show);
@@ -209,7 +209,7 @@ char enterLetter(char *guess,int len){
 
     while((input<97 || input>122) || reuse==1){
         printf("Invalid Input. Try again.Enter a lower case letter: ");
-        scanf("%c",input);
+        scanf("%c",&input);
 
         for(x=0;x<guessLength;x++){
             if(input==guess[x])
