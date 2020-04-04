@@ -12,7 +12,7 @@ void hangState();
 int startGame();                                                                        
 char randomWord();
 int playGame();
-char* enterLetter();
+char enterLetter();
 //int gameOver();
 
 int userIn;
@@ -27,7 +27,7 @@ int main(){
     }
     else if(userIn==2){   
         printf("These are movies from 2019\n");                                 
-        hangState();
+        hangState(0);
         randomWord();
     }
 
@@ -137,18 +137,17 @@ void hangState(int incor){
 
 int playGame(char show[]){
     
-    int length,x,y,solve=0,newlength,compare;
-    char guesses[]={"abcd"};
+    int length,x,y,solve=0,newlength,compare,count=0,wrong=0;
+    char guesses[26]={""};
     length=strlen(show)-1;
-    newlength=strlen(guesses);
-    //printf("len %d\n",length);
-    //printf("new len %d\n",newlength);
     printf("%s\n",show);
-    //enterLetter(guesses,newlength);
     while(solve!=1){
+        wrong=0;
+        guesses[count]=enterLetter(guesses,newlength);    
+        newlength=strlen(guesses);
         for(y=0;y<length;y++){
             for(x=0;x<newlength;x++){          //for loops for each character in the answer
-
+            
                 if(show[y]==32){
                     printf("%c ",show[y]);
                     break;
@@ -161,28 +160,43 @@ int playGame(char show[]){
                     continue;
                 else
                     printf("_ ");
-                  
+            }
+        } 
+
+        for(x=0;x<newlength;x++){
+            for(y=0;y<length;y++){ 
+                //printf("guessletter %c, show letter %c\n",guesses[x],show[y]);
+                if(guesses[x]==show[y])
+                    break; 
+                else if(y<length-1)
+                    continue;
+                else{
+                    //printf("wrong guess %c\n",guesses[x]);
+                    wrong=wrong+1;
+                }
             }
         }
-    //enterLetter(guesses);
-    printf("\n");
-    break;      //Remove this when testing is done
+
+
+        printf("wrong guesses %d\n",wrong);
+        hangState(wrong);
+        count=count+1;
+        
     }
 return 0;
 }
 
-/*
-char* enterLetter(char *guess,int len){
-    int x,reuse,guessLength;
+
+char enterLetter(char *guess,int len){
+    int x,reuse=0,guessLength;
     char input;
-    printf("hi");
     guessLength=strlen(guess);
-    printf("hi");
     printf("Guessed Letters: ");
     for(x=0;x<guessLength;x++)
         printf("%c ",guess[x]);
+    printf("\n");
     printf("Enter a lower case letter: ");
-    scanf("%c",input);
+    scanf("%*c%c",&input);              //reading in the new line character
 
     for(x=0;x<guessLength;x++){
         if(input==guess[x])
@@ -193,14 +207,14 @@ char* enterLetter(char *guess,int len){
             reuse=0;
     }
 
-    while((input<97 && input>122) || reuse==1){
+    while((input<97 || input>122) || reuse==1){
         printf("Invalid Input. Try again.Enter a lower case letter: ");
         scanf("%c",input);
 
         for(x=0;x<guessLength;x++){
             if(input==guess[x])
                 reuse=1;
-            else if(x<guessLength)
+            else if(x<guessLength+1)
                 continue;
             else
                 reuse=0;
@@ -208,12 +222,11 @@ char* enterLetter(char *guess,int len){
     
     }
 
-char* ret = input;
-return ret;
+return input;
 
 }
 
-*/
+
 /*
 int gameOver(){
 
