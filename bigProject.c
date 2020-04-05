@@ -13,7 +13,7 @@ int startGame();
 char randomWord();
 int playGame();
 char enterLetter();
-//int gameOver();
+int gameOver();
 
 int userIn;
 int main(){
@@ -75,6 +75,7 @@ char randomWord(){                      //This function is used when there is on
 
 
 void hangState(int incor){
+    int solved;
 
     char state[8][8][20]=
 {{  "  +---+ \n",
@@ -131,17 +132,25 @@ void hangState(int incor){
     for(y=0;y<8;y++)
         printf("%s",state[incor][y]);        
     printf("You have %d incorrect guesses left.\n",6-incor);
-    
+
+    if(6-incor == 0){
+        printf("You have used up all of your guesses. Game over!");
+        exit(0);
+        //solved = 1;
+        //printf("This is the assigned integer %d",solved);
+        //gameOver(state[incor][y]);
+    }
 }
 
 
 int playGame(char show[]){
     
-    int length,x,y,solve=0,newlength,count=0,wrong=0;
+    int length,x,y,solve=0,newlength,count=0,wrong=0,letterlength=0;
     char guesses[26]={""};
     length=strlen(show)-1;
     printf("%s\n",show);
     while(solve!=1){
+        letterlength=0;
         wrong=0;
         guesses[count]=enterLetter(guesses,newlength);    
         newlength=strlen(guesses);
@@ -160,6 +169,7 @@ int playGame(char show[]){
                     continue;
                 else
                     printf("_ ");
+                    letterlength++;
             }
         } 
 
@@ -181,6 +191,11 @@ int playGame(char show[]){
         printf("wrong guesses %d\n",wrong);
         hangState(wrong);
         count=count+1;
+
+        if (letterlength == 0){
+            printf("\n\nWinner!\n");
+            gameOver(guesses,show);
+        }
         
     }
 return 0;
@@ -210,11 +225,10 @@ char enterLetter(char *guess,int len){
     while((input<97 || input>122) || reuse==1){
         printf("Invalid Input. Try again.Enter a lower case letter: ");
         scanf("%c",&input);
-
         for(x=0;x<guessLength;x++){
             if(input==guess[x])
                 reuse=1;
-            else if(x<guessLength+1)
+            else if(x<guessLength-1)
                 continue;
             else
                 reuse=0;
@@ -227,10 +241,10 @@ return input;
 }
 
 
-/*
-int gameOver(){
-
+int gameOver(char guesses[], char show[]){
+    printf("Secret movie title: %s", show);
+    printf("These were all of your guesses: %s\n", guesses);
+    //printf("Here is what your man looks like\n %s",state[incor][y]);
+    exit(0);
 }
-*/
-
 
