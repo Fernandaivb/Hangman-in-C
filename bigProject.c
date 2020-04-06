@@ -19,7 +19,6 @@ int main(){
     FILE *fp;
     char str[500];
     char* filename = "title.txt";       //Make sure you have title.txt in same file location
- 
     fp = fopen(filename, "r");
     if (fp == NULL)
         printf("Could not open file %s",filename);
@@ -208,7 +207,7 @@ char enterLetter(char *guess,int len){
     while((input<97 || input>122) || reuse==1){
         printf("Invalid Input. Try again.\n");
         printf("Enter a lower case letter: ");
-        scanf("%*c%c",&input);
+        scanf("%c%*c",&input);
         for(x=0;x<guessLength;x++){
             if(input==guess[x]){
                 reuse=1;
