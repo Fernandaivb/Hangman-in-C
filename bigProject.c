@@ -181,11 +181,13 @@ char enterLetter(char *guess,int len){
         printf("%c ",guess[x]);
     printf("\n");
     printf("Enter a lower case letter: ");
-    scanf("%*c%c",&input);              //reading in the new line character
+    scanf("%c%*c",&input);              //reading in the new line character
 
     for(x=0;x<guessLength;x++){
-        if(input==guess[x])
+        if(input==guess[x]){
             reuse=1;
+            break;
+        }
         else if(x<guessLength-1)
             continue;
         else
@@ -193,17 +195,20 @@ char enterLetter(char *guess,int len){
     }
 
     while((input<97 || input>122) || reuse==1){
-        printf("Invalid Input. Try again.Enter a lower case letter: ");
-        scanf("%c",&input);
+        printf("Invalid Input. Try again.\n");
+        printf("Enter a lower case letter: ");
+        scanf("%*c%c",&input);
         for(x=0;x<guessLength;x++){
-            if(input==guess[x])
+            if(input==guess[x]){
                 reuse=1;
+                break;
+            }
             else if(x<guessLength-1)
                 continue;
             else
                 reuse=0;
         }
-    
+
     }
     system("clear");
 return input;
