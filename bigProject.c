@@ -16,6 +16,17 @@ int gameOver();
 
 int main(){
     system("clear");
+    FILE *fp;
+    char str[500];
+    char* filename = "title.txt";
+ 
+    fp = fopen(filename, "r");
+    if (fp == NULL)
+        printf("Could not open file %s",filename);
+    while (fgets(str, 500, fp) != NULL)
+        printf("%s", str);
+    fclose(fp);
+
     printf("These are movies from 2019\n");                                 
     hangState(0);
     randomWord();
