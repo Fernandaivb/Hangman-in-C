@@ -18,7 +18,7 @@ int main(){
     system("clear");
     FILE *fp;
     char str[500];
-    char* filename = "title.txt";
+    char* filename = "title.txt";       //Make sure you have title.txt in same file location
  
     fp = fopen(filename, "r");
     if (fp == NULL)
