@@ -110,6 +110,7 @@ int playGame(char show[]){
     int showLength,x,y,solve=0,guessLength,count=0,wrong=0,letterLength=0;
     char guesses[26]={""};
     printf("%s\n",show);
+    showLength=strlength(show)-1;
     for(y=0;y<showLength;y++){
         if(show[y]==32)
             printf("%c ",show[y]);
