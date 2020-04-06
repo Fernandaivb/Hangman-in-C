@@ -1,7 +1,6 @@
 /****************************************************************************************************************************
 *File: bigProject.c
 *Names: Kearsten Crocker, Blake Webber, Fernanda Villafana Benitez
-*Resources: 
 ****************************************************************************************************************************/
 #include <stdio.h>
 #include <string.h>
@@ -119,7 +118,7 @@ int playGame(char show[]){
     
     int showLength,x,y,solve=0,guessLength,count=0,wrong=0,letterLength=0;
     char guesses[26]={""};
-    printf("%s\n",show);
+    //printf("%s\n",show);
     showLength=strlen(show)-1;
     for(y=0;y<showLength;y++){
         if(show[y]==32)
