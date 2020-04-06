@@ -110,7 +110,7 @@ int playGame(char show[]){
     int showLength,x,y,solve=0,guessLength,count=0,wrong=0,letterLength=0;
     char guesses[26]={""};
     printf("%s\n",show);
-    showLength=strlength(show)-1;
+    showLength=strlen(show)-1;
     for(y=0;y<showLength;y++){
         if(show[y]==32)
             printf("%c ",show[y]);
@@ -119,6 +119,7 @@ int playGame(char show[]){
     }
     printf("\n");
     while(solve!=1){
+        letterLength=0;
         wrong=0;
         guesses[count]=enterLetter(guesses,guessLength);
         guessLength=strlen(guesses);
@@ -185,7 +186,7 @@ char enterLetter(char *guess,int len){
     for(x=0;x<guessLength;x++){
         if(input==guess[x])
             reuse=1;
-        else if(x<guessLength)
+        else if(x<guessLength-1)
             continue;
         else
             reuse=0;
