@@ -1,6 +1,7 @@
 /****************************************************************************************************************************
 *File: bigProject.c
 *Names: Kearsten Crocker, Blake Webber, Fernanda Villafana Benitez
+*Resources: 
 ****************************************************************************************************************************/
 #include <stdio.h>
 #include <string.h>
@@ -15,15 +16,15 @@ int gameOver();
 
 int main(){
     system("clear");
-    FILE *fp;
+    FILE *welcome;
     char str[500];
     char* filename = "title.txt";       //Make sure you have title.txt in same file location
-    fp = fopen(filename, "r");
-    if (fp == NULL)
+    welcome = fopen(filename, "r");
+    if (welcome == NULL)
         printf("Could not open file %s",filename);
-    while (fgets(str, 500, fp) != NULL)
+    while (fgets(str, 500, welcome) != NULL)
         printf("%s", str);
-    fclose(fp);
+    fclose(welcome);
 
     printf("These are movies from 2019\n");                                 
     hangState(0);
@@ -39,13 +40,11 @@ char randomWord(){                      //This function is used when there is on
     movies = fopen( "words.txt" , "r" );    //Make sure you have words.txt in same file location
     
     while (fgets(wordList[counter],200, movies )){
-           // printf(" This is a test to print the file... %s\n", wordList[counter]);// This shows that the file is read into the array wordList
             ++counter;
     }
     
     srand(time(NULL));
     randomPosition=rand()%10;
-    //printf("from word list %s", wordList[randomPosition]);
     playGame(wordList[randomPosition]);
     return 0;
 }
@@ -118,7 +117,6 @@ int playGame(char show[]){
     
     int showLength,x,y,solve=0,guessLength,count=0,wrong=0,letterLength=0;
     char guesses[26]={""};
-    //printf("%s\n",show);
     showLength=strlen(show)-1;
     for(y=0;y<showLength;y++){
         if(show[y]==32)
@@ -154,20 +152,17 @@ int playGame(char show[]){
 
         for(x=0;x<guessLength;x++){
             for(y=0;y<showLength;y++){ 
-                //printf("guessletter %c, show letter %c\n",guesses[x],show[y]);
                 if(guesses[x]==show[y])
                     break; 
                 else if(y<showLength-1)
                     continue;
                 else{
-                    //printf("wrong guess %c\n",guesses[x]);
                     wrong=wrong+1;
                 }
             }
         }
 
 
-       // printf("wrong guesses %d\n",wrong);
         printf("\n");
         hangState(wrong);
         count=count+1;
@@ -228,7 +223,6 @@ return input;
 int gameOver(char guesses[], char show[]){
     printf("Secret movie title: %s", show);
     printf("These were all of your guesses: %s\n", guesses);
-    //printf("Here is what your man looks like\n %s",state[incor][y]);
     exit(0);
 }
 
